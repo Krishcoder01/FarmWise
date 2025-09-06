@@ -9,19 +9,20 @@ const productSchema = new mongoose.Schema({
         type : String,
         required : true
     },
-    price : {
+    bestPrice : {
         type : Number,
         required : true
-    },
-    quantity : {
-        type : Number,
-        required : true,
-        default : 1
-    },
+    },  
     type : {
         type : String,
         enum : ['machine' , 'fertilizer', 'pesticide', 'seed' , 'plant'],
         required : true
+    },
+    seller : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Seller',
+        required : true
+
     }
 });
 
