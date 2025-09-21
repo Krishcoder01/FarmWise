@@ -2,6 +2,7 @@ const User = require('../models/userSchema');
 const cropSchema = require('../models/cropsSchema');
 const { generateHashPassword, comparePassword } = require('../utils/function');
 const { generateToken } = require('../utils/function');
+const {getLatLong}= require('../services/openWeather')
 
 
 const signupController = async (req, res) => {
@@ -16,7 +17,7 @@ const signupController = async (req, res) => {
         }
     
         const hashedPassword = await generateHashPassword(password);
-
+        const { lat, lon } = await getLatLong(city, state);
         
         const newUser = new User({
             name,
@@ -24,7 +25,9 @@ const signupController = async (req, res) => {
             password: hashedPassword,
             state,
             city,
-            crops
+            crops,
+            lat,
+            lng : lon
         });
 
         const token = generateToken(newUser);

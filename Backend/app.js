@@ -10,6 +10,7 @@ const connectDb = require('./config/db');
 //routes
 const userRoutes = require('./routes/userRoutes');
 const cropRoutes = require('./routes/cropRoutes');
+const weatherRoutes = require('./routes/weatherRoutes');
 
 
 
@@ -40,6 +41,7 @@ app.get('/', async (req, res) => {
 
 app.use('/api/user' , userRoutes);
 app.use('/api/crop' , cropRoutes);
+app.use('/api/weather' , weatherRoutes);
 
 
 
