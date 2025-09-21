@@ -9,6 +9,7 @@ const connectDb = require('./config/db');
 
 //routes
 const userRoutes = require('./routes/userRoutes');
+const cropRoutes = require('./routes/cropRoutes');
 
 
 
@@ -31,11 +32,16 @@ app.set('view engine','ejs')
 
 // Routes
 
-app.get('/', (req, res) => {
-    res.send('Welcome to the Weather App Of FarmWise 🙇‍♂️');
+app.get('/', async (req, res) => {
+    // res.send('Welcome to the Weather App Of FarmWise 🙇‍♂️');
+    res.send("Welocome to the Weather App Of FarmWise 🙇‍♂️");
 });
 
+
 app.use('/api/user' , userRoutes);
+app.use('/api/crop' , cropRoutes);
+
+
 
 // Server
 app.listen(process.env.PORT, () => {
